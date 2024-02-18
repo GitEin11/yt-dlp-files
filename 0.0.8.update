@@ -1,0 +1,2 @@
+echo -ne '\033]0;update youtube-dl\007' &&
+echo [yourpassword] | sudo -S pip3 install -U yt-dlp
