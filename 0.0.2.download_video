@@ -1,0 +1,55 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+echo -ne '\033]0;download video\007'
+url=`cat  ./data/url`
+
+command1='yt-dlp --write-info-json --download-archive ./log/downloaded_vid --no-post-overwrites --write-thumbnail'
+
+# index format
+no_index () { echo '';} 
+w_index () { echo '';}
+rev_index () { echo '--playlist-reverse --compat-options playlist-index';}
+order="$(grep -i 'index_format' ./data/config | cut -d' ' -f2)"
+order=`eval $order`
+no_index () { echo '';} 
+w_index () { echo '%(playlist_index)s ';}
+rev_index () { echo '%(playlist_index)s ';}
+index="$(grep -i 'index_format' ./data/config | cut -d' ' -f2)"
+index=`eval $index`
+
+# video format
+vid_format=$(grep -i 'video_format' ./data/config | cut -d' ' -f2)
+
+
+# parent directory
+curr_dir=$(dirname "$0")
+parent_dir=$(dirname "$curr_dir")
+parent_dir="$parent_dir"
+
+# folder format
+no_folder () { echo '';}
+w_folder () { echo '%(playlist_title)s/';}
+folder="$(grep -i 'folder_format' ./data/config | cut -d' ' -f2)"
+folder=`eval $folder`
+
+# title format
+no_ID () { echo '';}
+w_ID () { echo ' [%(id)s]';}
+ID="$(grep -i 'title_format' ./data/config | cut -d' ' -f2)"
+ID=`eval $ID`
+
+# sponsor block
+no_sponsor () { echo '--sponsorblock-remove all';}
+w_sponsorB () { echo '';}
+sponsor="$(grep -i 'sponsor_block' ./data/config | cut -d' ' -f2)"
+sponsor=`eval $sponsor`
+
+clear
+echo "\n\n\n"
+
+final="$command1 $order $vid_format -ciw -v -o \"$parent_dir/$folder$index%(title)s$ID.%(ext)s\" $url $sponsor"
+
+eval $final
+
+
