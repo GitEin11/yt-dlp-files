@@ -1,0 +1,9 @@
+#!/bin/bash
+
+url=`cat  ./data/url`
+folder=`cat ./data/folder`
+
+cd ..
+cd ./"$folder"
+
+rm *.vtt
