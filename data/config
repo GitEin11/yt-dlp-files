@@ -1,0 +1,28 @@
+
+# when using list you can combined video and audio by using "+" >> "video number"+"audio number"
+# v360p, v480p, best_av, list
+video_format list
+
+# you can chooose to add the "ID" to the name, usefull when using jellyfin extension to get metadata
+# no_ID, w_ID
+title_format w_ID
+
+# this is for adding number to the name if downloading whole channel/playlist. rev means reverse
+# no_index, w_index, rev_index
+index_format rev_index
+
+# files will be saved on folder named (channel/playlist)
+# no_folder, w_folder
+folder_format w_folder
+
+# will remove all sponsor part of the video
+# no_sponsor, w_sponsor
+sponsor_block w_sponsor
+
+# subtitle language
+sub_lang en
+
+# srt_fix this to fix the repetition of line in auto-sub, you need install srt_fix
+# subtitle type
+# --write-sub, --write-auto-sub, --write-auto-sub --convert-subs=srt --use-postprocessor srt_fix
+sub_type --write-auto-sub --convert-subs=srt --use-postprocessor srt_fix
