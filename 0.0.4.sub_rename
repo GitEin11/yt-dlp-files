@@ -1,10 +1,8 @@
 #!/bin/bash
 
-url=`cat  ./data/url`
 folder=`cat  ./data/folder`
 
-cd ..
-cd ./"$folder"
+cd ../"$folder"
 
 rename 's/\.en//' *.vtt
 find . -iname "*.en.vtt"  -exec rename _en.vtt .vtt '{}' \;
