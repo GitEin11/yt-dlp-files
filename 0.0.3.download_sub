@@ -42,11 +42,8 @@ sponsor="$(grep -i 'sponsor_block' ./data/config | cut -d' ' -f2)"
 sponsor=`eval $sponsor`
 
 sub_lang=$(grep -i 'sub_lang' ./data/config | cut -d' ' -f2)
-sub_type=$(grep -i 'sub_type' ./data/config | cut -d' ' -f2)
-
+sub_type=$(grep -oP '(?<=sub_type ).*' ./data/config)
 
 final="$command1 $order -f best -ciw -v -o \"$parent_dir/$folder$index%(title)s$ID.%(ext)s\" $url $sponsor --sub-lang $sub_lang $sub_type"
 
 eval $final
-
-
