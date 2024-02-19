@@ -22,7 +22,7 @@ sponsor_block w_sponsor
 # subtitle language
 sub_lang en
 
-# srt_fix this to fix the repetition of line in auto-sub, you need install srt_fix
+# to fix the repetition of line in auto-sub, you need install srt_fix
 # subtitle type
 # --write-sub, --write-auto-sub, --write-auto-sub --convert-subs=srt --use-postprocessor srt_fix
 sub_type --write-auto-sub --convert-subs=srt --use-postprocessor srt_fix
