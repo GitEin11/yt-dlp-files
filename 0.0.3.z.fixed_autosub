@@ -1,0 +1,10 @@
+#!/bin/bash
+
+folder=`cat  ./data/folder`
+cd ../"$folder"
+rename 's/\.en//' *.srt
+find . -iname "*.en.srt" -exec rename _en.srt .srt '{}' \;
+python3 ../yt-dlp/srt_fix/srt_fixer_cli.py -idir ./ -odir ./
+find . -maxdepth 1 -name '*.srt' -not -name '*.fixed.srt' -delete
+rename 's/\.fixed//' *.srt
+find . -iname "*.fixed.srt"  -exec rename _fixed.srt .srt '{}' \;
