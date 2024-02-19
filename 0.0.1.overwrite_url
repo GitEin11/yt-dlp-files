@@ -13,4 +13,4 @@ echo "$folder" > ./data/folder
 
 printf "\n\n\n\n%-2s"
 
-yt-dlp --skip-download -J $url | jq '{"date": .upload_date,"title": .title,"URL": .url,"duration": .duration}'
+yt-dlp --skip-download -J $url | jq -r "{\"date\": .upload_date,\"title\": .title,\"URL\": \"$url\",\"duration\": \"\(.duration / 3600 | floor)h \(.duration % 3600 / 60 | floor)m \(.duration % 60)s\"}"
