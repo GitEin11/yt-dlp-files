@@ -66,14 +66,10 @@ sponsor=`eval $sponsor`
 
 final="$command1 $order -f $vid_format -ciw -v -o \"$parent_dir/$folder$index%(title)s$ID.%(ext)s\" '$url' $sponsor"
 
-final2="yt-dlp -o \"$parent_dir/reddit.%(ext)s\" '$url'"
+final2="yt-dlp -o \"$parent_dir/%(title).100s.%(ext)s\" '$url'"
 
 if grep -q "reddit.com" ./data/url; then
   eval $final2
 else
   eval $final
 fi
-
-
-
-
