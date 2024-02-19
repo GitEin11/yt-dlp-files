@@ -1,4 +1,3 @@
-
 # when using list you can combined video and audio by using "+" >> "video number"+"audio number"
 # v360p, v480p, best_av, list
 video_format list
@@ -22,7 +21,6 @@ sponsor_block w_sponsor
 # subtitle language
 sub_lang en
 
-# to fix the repetition of line in auto-sub, you need install srt_fix
 # subtitle type
-# --write-sub, --write-auto-sub, --write-auto-sub --convert-subs=srt --use-postprocessor srt_fix
-sub_type --write-auto-sub --convert-subs=srt --use-postprocessor srt_fix
+# --write-sub, --write-auto-sub
+sub_type --write-auto-sub --convert-subs=srt
