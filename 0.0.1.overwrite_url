@@ -3,5 +3,6 @@ cd "$(dirname "$0")"
 mkdir ./data
 echo -ne '\033]0;overwrite url\007'
 echo "string" | xclip -o -selection clipboard > ./data/url && clear &&
+export DISPLAY=:0
 url=`cat  ./data/url`
 yt-dlp --skip-download -J $url | jq -r "{\"title\": .title,\"title\": .title,\"date\": (.upload_date | strptime(\"%Y%m%d\") | strftime(\"%Y-%b-%d\")),\"duration\": \"\(.duration / 3600 | floor)h \(.duration % 3600 / 60 | floor)m \(.duration % 60)s\",\"URL\":\"$url\"}"
