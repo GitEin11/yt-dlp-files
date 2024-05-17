@@ -19,7 +19,7 @@ index="$(grep -i 'index_format' ./data/config | cut -d' ' -f2)"
 index=`eval $index`
 
 # parent directory
-curr_dir=$(dirname "$0")
+curr_dir=$(dirname -- "$(readlink -f -- "$0")")
 parent_dir=$(dirname "$curr_dir")
 parent_dir="$parent_dir"
 
