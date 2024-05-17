@@ -3,7 +3,6 @@
 cd "$(dirname "$0")"
 echo -ne '\033]0;download video\007'
 url=`cat  ./data/url`
-
 command0='yt-dlp --list-formats $url'
 
 # video format
@@ -50,6 +49,7 @@ no_folder () { echo '';}
 w_folder () { echo '%(playlist_title)s/';}
 folder="$(grep -i 'folder_format' ./data/config | cut -d' ' -f2)"
 folder=`eval $folder`
+echo $fodler > ./data/folder
 
 # title format
 no_ID () { echo '';}
@@ -62,7 +62,6 @@ no_sponsor () { echo '--sponsorblock-remove all';}
 w_sponsor () { echo '';}
 sponsor="$(grep -i 'sponsor_block' ./data/config | cut -d' ' -f2)"
 sponsor=`eval $sponsor`
-
 
 final="$command1 $order -f $vid_format -ciw -v -o \"$parent_dir/$folder$index%(title)s$ID.%(ext)s\" '$url' $sponsor"
 
