@@ -1,6 +1,9 @@
 #!/bin/bash
 
 folder=`cat  ./data/folder`
+if [ -z "$folder" ]; then
+  folder="NA"
+fi
 cd ../"$folder"
 rename 's/\.en//' *.srt
 find . -iname "*.en.srt" -exec rename _en.srt .srt '{}' \;
