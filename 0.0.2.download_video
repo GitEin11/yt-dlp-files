@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 echo -ne '\033]0;download video\007'
-url=`cat  ./data/url`
+url=`cat ./data/url`
 command0='yt-dlp --list-formats $url'
 
 # video format
@@ -12,19 +12,17 @@ best_av () { echo "'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' -
 vid_format=$(grep -i 'video_format' ./data/config | cut -d' ' -f2)
 
 if grep -q "reddit.com" ./data/url; then
-  sleep 1  
+	sleep 1
 else
-  if [ "$vid_format" = "list" ]; then
-  eval $command0
-  echo -e "\n\n\nPlease enter a video format:"
-  read vid_format1
-  fi
+	if [ "$vid_format" = "list" ]; then
+		eval $command0
+		echo -e "\n\n\nPlease enter a video format:"
+		read vid_format1
+	fi
 fi
 
 list () { echo $vid_format1;}
-
 vid_format=`eval $vid_format`
-
 command1='yt-dlp --write-info-json --download-archive ./log/downloaded_vid --no-post-overwrites --write-thumbnail --embed-chapters'
 
 # index format
@@ -64,11 +62,10 @@ sponsor="$(grep -i 'sponsor_block' ./data/config | cut -d' ' -f2)"
 sponsor=`eval $sponsor`
 
 final="$command1 $order -f $vid_format -ciw -v -o \"$parent_dir/$folder$index%(title)s$ID.%(ext)s\" '$url' $sponsor"
-
 final2="yt-dlp -o \"$parent_dir/%(title).100s.%(ext)s\" '$url'"
 
 if grep -q "reddit.com" ./data/url; then
-  eval $final2
+	eval "$final2"
 else
-  eval $final
+	eval "$final"
 fi
